@@ -13,20 +13,12 @@ const UserPage = () => {
         
         {/* Navigation Elements */}
         <div className="nav-left">
-          <div className="search-container">
-            <span className="search-icon">🔍</span>
-            <input
-              type="text"
-              placeholder="Explore more routes..."
-              className="search-input"
-            />
-          </div>
         </div>
         
         <div className="nav-right">
-          <button className="nav-button make-route-btn">
-            Make Your Own Route
-          </button>
+          <a href="/create-route" className="nav-button make-route-btn">
+            Create Your Own Route
+          </a>
           
           <a href="/favourites" className="nav-button favourites-btn">
             <span className="heart-icon">❤️</span>

@@ -53,7 +53,7 @@ const HomePage = () => {
           </h1>
           
           <p className="sub-text">
-            With TravelRouter, you can create your dream holiday routes anytime, anywhere.
+            With WanderPath, you can create your dream holiday routes anytime, anywhere.
           </p>
           
           <a href="/user" className="cta-button">
