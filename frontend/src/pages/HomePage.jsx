@@ -8,7 +8,7 @@ const HomePage = () => {
       <header className="header">
         {/* Logo */}
         <div className="logo">
-          <span className="logo-text">TRAVELROUTER</span>
+          <span className="logo-text">WANDERPATH</span>
         </div>
         
         {/* Auth Buttons */}
@@ -56,9 +56,9 @@ const HomePage = () => {
             With TravelRouter, you can create your dream holiday routes anytime, anywhere.
           </p>
           
-          <button className="cta-button">
+          <a href="/user" className="cta-button">
             Start Connecting The Dots
-          </button>
+          </a>
         </div>
       </main>
     </div>
