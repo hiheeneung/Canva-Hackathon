@@ -1,8 +1,14 @@
-// server/src/index.js
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./config/swagger.js";
+import { initDatabase } from "./config/database.js";
+
+// Import routes
+import authRoutes from "./routes/auth.js";
+import routes from "./routes/routes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 
@@ -10,57 +16,44 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: true, // 모든 origin 허용 (개발 환경에서만)
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
 app.use(express.json());
+
+// Swagger Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
-  res.json({ ok: true });
+  res.json({ 
+    status: 'OK',
+    message: 'Travel Route API is running!',
+    timestamp: new Date().toISOString()
+  });
 });
 
-// Import Routes model
-import Route from "./models/Route.js";
+// API Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/routes', routes);
+app.use('/api/users', userRoutes);
 
-// ---- API ENDPOINTS ----
-
-// Get all routes
-app.get("/api/routes", async (req, res) => {
+// Initialize database and start server
+const startServer = async () => {
   try {
-    const routes = await Route.find();
-    res.json(routes);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    await initDatabase();
+  } catch (error) {
+    console.error("⚠️ Database connection failed, but server will start anyway:", error.message);
   }
-});
+  
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📚 API Documentation: http://localhost:${PORT}/api-docs`);
+    console.log(`🔍 Health check: http://localhost:${PORT}/api/health`);
+  });
+};
 
-// Create a new route
-app.post("/api/routes", async (req, res) => {
-  try {
-    const newRoute = new Route(req.body);
-    const savedRoute = await newRoute.save();
-    res.status(201).json(savedRoute);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
-
-// Get route by ID
-app.get("/api/routes/:id", async (req, res) => {
-  try {
-    const route = await Route.findById(req.params.id);
-    if (!route) return res.status(404).json({ error: "Route not found" });
-    res.json(route);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Connect to MongoDB and start server
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
-    app.listen(PORT, () =>
-      console.log(`✅ API listening on http://localhost:${PORT}`)
-    );
-  })
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+startServer();
