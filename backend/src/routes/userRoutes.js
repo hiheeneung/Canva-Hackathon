@@ -142,4 +142,60 @@ router.delete('/:userId/routes/:routeId/favorite', authenticateToken, async (req
   }
 });
 
+// User statistics
+router.get('/:userId/stats', authenticateToken, async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    // Check if user is accessing their own stats
+    if (userId !== req.user.id) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+
+    const userRoutes = await Route.find({ user: userId });
+    const publicRoutes = await Route.find({ user: userId, isPublic: true });
+    const totalLikes = userRoutes.reduce((sum, route) => sum + route.likes.length, 0);
+    const totalViews = userRoutes.reduce((sum, route) => sum + route.viewCount, 0);
+    const totalFavorites = await Route.countDocuments({ favorites: userId });
+
+    // Category breakdown
+    const categoryStats = await Route.aggregate([
+      { $match: { user: userId, isPublic: true } },
+      { $group: { _id: '$category', count: { $sum: 1 } } },
+      { $sort: { count: -1 } }
+    ]);
+
+    // Country breakdown
+    const countryStats = await Route.aggregate([
+      { $match: { user: userId, isPublic: true } },
+      { $group: { _id: '$country', count: { $sum: 1 } } },
+      { $sort: { count: -1 } }
+    ]);
+
+    // Recent activity (last 30 days)
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const recentRoutes = await Route.countDocuments({
+      user: userId,
+      createdAt: { $gte: thirtyDaysAgo }
+    });
+
+    res.json({
+      totalRoutes: userRoutes.length,
+      publicRoutes: publicRoutes.length,
+      privateRoutes: userRoutes.length - publicRoutes.length,
+      totalLikes,
+      totalViews,
+      totalFavorites,
+      categoryStats,
+      countryStats,
+      recentRoutes
+    });
+  } catch (error) {
+    console.error('Get user stats error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 export default router;

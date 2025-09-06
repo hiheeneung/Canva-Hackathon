@@ -13,12 +13,14 @@ import userRoutes from "./routes/userRoutes.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:4000'],
-  credentials: true
+  origin: true, // 모든 origin 허용 (개발 환경에서만)
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 app.use(express.json());
 
@@ -43,15 +45,15 @@ app.use('/api/users', userRoutes);
 const startServer = async () => {
   try {
     await initDatabase();
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
-      console.log(`📚 API Documentation: http://localhost:${PORT}/api-docs`);
-      console.log(`🔍 Health check: http://localhost:${PORT}/api/health`);
-    });
   } catch (error) {
-    console.error("❌ Failed to start server:", error);
-    process.exit(1);
+    console.error("⚠️ Database connection failed, but server will start anyway:", error.message);
   }
+  
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📚 API Documentation: http://localhost:${PORT}/api-docs`);
+    console.log(`🔍 Health check: http://localhost:${PORT}/api/health`);
+  });
 };
 
 startServer();

@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     trim: true,
     lowercase: true,
-    match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email']
+    match: [/^.+@.+\..+$/, 'Please enter a valid email']
   },
   password: {
     type: String,
@@ -74,8 +74,7 @@ userSchema.methods.toJSON = function() {
   return user;
 };
 
-// Index for better query performance
-userSchema.index({ email: 1 });
-userSchema.index({ username: 1 });
+// Indexes are automatically created by unique: true in schema definition
+// No need for explicit index creation as it causes duplicate index warnings
 
 export default mongoose.model('User', userSchema);

@@ -9,9 +9,22 @@ export const initDatabase = async () => {
       return;
     }
 
+    // Use environment variable or fallback to local MongoDB
     const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/canva-hackathon';
     
-    await mongoose.connect(mongoUri);
+    const options = {
+      serverSelectionTimeoutMS: 10000,
+      socketTimeoutMS: 30000,
+      connectTimeoutMS: 10000,
+      maxPoolSize: 5,
+      minPoolSize: 1,
+      maxIdleTimeMS: 60000,
+      heartbeatFrequencyMS: 10000,
+      retryWrites: true,
+      retryReads: true,
+    };
+    
+    await mongoose.connect(mongoUri, options);
     isConnected = true;
     console.log('📦 MongoDB connected successfully');
     
