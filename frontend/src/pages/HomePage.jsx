@@ -13,8 +13,8 @@ const HomePage = () => {
         
         {/* Auth Buttons */}
         <div className="auth-buttons">
-          <button className="signup-btn">Sign up</button>
-          <button className="login-btn">Log in</button>
+          <a href="/signup" className="signup-btn">Sign up</a>
+          <a href="/login" className="login-btn">Log in</a>
         </div>
       </header>
 
