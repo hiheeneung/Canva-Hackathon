@@ -33,9 +33,9 @@ const UserPage = () => {
             Favourites
           </a>
           
-          <button className="nav-button my-routes-btn">
+          <a href="/my-routes" className="nav-button my-routes-btn">
             My Routes
-          </button>
+          </a>
         </div>
       </header>
 

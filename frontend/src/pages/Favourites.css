@@ -234,12 +234,11 @@
   padding-bottom: 40px;
 }
 
-/* Favourite Card */
+/* Route Card */
 .favourite-card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   border-radius: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -248,7 +247,6 @@
 .favourite-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .card-image {
@@ -369,12 +367,13 @@
 }
 
 .tag {
-  background: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #f48fb1 0%, #64b5f6 100%);
+  color: white;
   padding: 5px 12px;
   border-radius: 15px;
   font-size: 12px;
   font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: none;
 }
 
 .card-actions {
@@ -394,25 +393,26 @@
 }
 
 .view-route-btn {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #B8E6B8 0%, #A8D8A8 100%);
+  color: #2d5a2d;
+  border: 2px solid rgba(184, 230, 184, 0.3);
 }
 
 .view-route-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #A8D8A8, #98C898);
   transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(184, 230, 184, 0.4);
 }
 
 .plan-trip-btn {
-  background: linear-gradient(135deg, #ff6b6b, #feca57);
-  color: #fff;
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  background: linear-gradient(135deg, #B8D4F1, #A8C4E1);
+  color: #1e3a5f;
+  box-shadow: 0 4px 15px rgba(184, 212, 241, 0.3);
 }
 
 .plan-trip-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 8px 25px rgba(184, 212, 241, 0.4);
 }
 
 /* Responsive Design */
