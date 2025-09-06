@@ -1,0 +1,492 @@
+/* HomePage.css */
+.homepage {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #ffb3d1 0%, #87ceeb 50%, #ffb3d1 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.homepage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 192, 203, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.homepage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="travel" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="30" cy="70" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.12)"/><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23travel)"/></svg>');
+  opacity: 0.3;
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+/* Floating Stars */
+.homepage .floating-star {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  pointer-events: none;
+  animation: floatStar 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+.homepage .floating-star:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+.homepage .floating-star:nth-child(2) { top: 30%; right: 25%; animation-delay: 0.5s; }
+.homepage .floating-star:nth-child(3) { top: 60%; left: 10%; animation-delay: 1s; }
+.homepage .floating-star:nth-child(4) { top: 70%; right: 15%; animation-delay: 1.5s; }
+.homepage .floating-star:nth-child(5) { top: 40%; left: 80%; animation-delay: 2s; }
+.homepage .floating-star:nth-child(6) { top: 80%; left: 60%; animation-delay: 2.5s; }
+
+@keyframes floatStar {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: translateY(-10px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+/* Travel Destinations */
+.travel-destinations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.destination {
+  position: absolute;
+  width: 180px;
+  height: 120px;
+  border-radius: 12px;
+  opacity: 0.4;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: floatImage 6s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% { 
+    transform: translateY(-8px) rotate(1deg);
+  }
+  50% { 
+    transform: translateY(-15px) rotate(0deg);
+  }
+  75% { 
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+.destination::before {
+  content: '✨';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  font-size: 20px;
+  opacity: 0.8;
+  animation: sparkle 2s ease-in-out infinite;
+  z-index: 2;
+}
+
+.destination::after {
+  content: '⭐';
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  font-size: 16px;
+  opacity: 0.7;
+  animation: sparkle 2.5s ease-in-out infinite reverse;
+  z-index: 2;
+}
+
+@keyframes sparkle {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+/* Top Row - More evenly distributed */
+.destination.paris {
+  top: 5%;
+  left: 3%;
+  background-image: url('https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 0s;
+}
+
+.destination.tokyo {
+  top: 8%;
+  left: 20%;
+  background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 1.5s;
+}
+
+.destination.newyork {
+  top: 6%;
+  right: 25%;
+  background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 3s;
+}
+
+.destination.iceland {
+  top: 4%;
+  right: 3%;
+  background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 4.5s;
+}
+
+/* Middle Row - More evenly distributed */
+.destination.switzerland {
+  top: 30%;
+  left: 5%;
+  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 0.5s;
+}
+
+.destination.morocco {
+  top: 25%;
+  left: 25%;
+  background-image: url('https://images.unsplash.com/photo-1539650116574-75c0c6d73c6e?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 2s;
+}
+
+.destination.japan {
+  top: 28%;
+  right: 30%;
+  background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 3.5s;
+}
+
+.destination.thailand {
+  top: 32%;
+  right: 5%;
+  background-image: url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 5s;
+}
+
+/* Lower Middle Row - More evenly distributed */
+.destination.dubai {
+  top: 50%;
+  left: 8%;
+  background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 1s;
+}
+
+.destination.italy {
+  top: 45%;
+  left: 30%;
+  background-image: url('https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 2.5s;
+}
+
+.destination.norway {
+  top: 48%;
+  right: 30%;
+  background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 4s;
+}
+
+.destination.maldives {
+  top: 52%;
+  right: 5%;
+  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 5.5s;
+}
+
+/* Bottom Row - More evenly distributed */
+.destination.santorini {
+  top: 70%;
+  left: 5%;
+  background-image: url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 1.2s;
+}
+
+.destination.bali {
+  top: 75%;
+  left: 25%;
+  background-image: url('https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 2.8s;
+}
+
+.destination.newzealand {
+  top: 72%;
+  right: 25%;
+  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop&crop=center');
+  animation-delay: 4.2s;
+}
+
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: transparent;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 32px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f48fb1 0%, #64b5f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-style: normal;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.signup-btn {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #87ceeb;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.signup-btn:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.login-btn {
+  background: linear-gradient(135deg, #f48fb1 0%, #64b5f6 100%);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(244, 143, 177, 0.3);
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(244, 143, 177, 0.4);
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  z-index: 5;
+}
+
+.hero-section {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.main-heading {
+  font-size: 120px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 40px 0;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.highlight-word {
+  color: #ffffff;
+  font-weight: 800;
+  font-style: italic;
+  position: relative;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.sub-text {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 60px 0;
+  line-height: 1.6;
+  font-weight: 400;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  background: linear-gradient(135deg, #f48fb1 0%, #64b5f6 100%);
+  color: #ffffff;
+  border: none;
+  padding: 20px 50px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(244, 143, 177, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(244, 143, 177, 0.6);
+}
+
+.cta-button:active {
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .main-heading {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+  
+  .logo-text {
+    font-size: 28px;
+  }
+  
+  .main-heading {
+    font-size: 80px;
+    margin-bottom: 30px;
+  }
+  
+  .sub-text {
+    font-size: 20px;
+    margin-bottom: 50px;
+  }
+  
+  .hero-section {
+    padding: 0 20px;
+  }
+  
+  .auth-buttons {
+    gap: 8px;
+  }
+  
+  .signup-btn,
+  .login-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .cta-button {
+    padding: 18px 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-heading {
+    font-size: 60px;
+    line-height: 1.1;
+  }
+  
+  .sub-text {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .cta-button {
+    padding: 16px 35px;
+    font-size: 16px;
+  }
+  
+  .logo-text {
+    font-size: 24px;
+  }
+}
