@@ -4,21 +4,14 @@ import './UserPage.css';
 const UserPage = () => {
   return (
     <div className="user-page">
-      {/* Header */}
+      {/* Header with Navigation */}
       <header className="header">
         {/* Logo */}
         <div className="logo">
           <span className="logo-text">WANDERPATH</span>
         </div>
         
-        {/* Auth Buttons */}
-        <div className="auth-buttons">
-          
-        </div>
-      </header>
-
-      {/* Navigation Bar */}
-      <nav className="nav-bar">
+        {/* Navigation Elements */}
         <div className="nav-left">
           <div className="search-container">
             <span className="search-icon">🔍</span>
@@ -44,7 +37,7 @@ const UserPage = () => {
             My Routes
           </button>
         </div>
-      </nav>
+      </header>
 
       {/* Floating Stars */}
       <div className="floating-star">✨</div>
