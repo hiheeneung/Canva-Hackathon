@@ -1,33 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const routeSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  description: {
-    type: String,
-    trim: true
-  },
-  points: [{
-    lat: { type: Number, required: true },
-    lng: { type: Number, required: true },
-    name: { type: String, trim: true }
-  }],
-  city: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  creator: {
-    type: String,
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+const PinSchema = new mongoose.Schema({
+  name: String,
+  lat: Number,
+  lng: Number,
+  note: String,
 });
 
-module.exports = mongoose.model('Route', routeSchema);
+const RouteSchema = new mongoose.Schema(
+  {
+    userId: { type: String, default: "guest" },
+    name: String,
+    city: String,
+    category: String,
+    pins: [PinSchema],
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Route", RouteSchema);

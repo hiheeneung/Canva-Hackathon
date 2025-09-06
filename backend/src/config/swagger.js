@@ -22,42 +22,63 @@ const options = {
       schemas: {
         Route: {
           type: 'object',
-          required: ['name', 'city', 'creator'],
+          required: ['name', 'city'],
           properties: {
             _id: {
               type: 'string',
-              description: 'Route ID'
+              description: 'Route unique identifier'
+            },
+            userId: {
+              type: 'string',
+              description: 'User ID who created the route',
+              default: 'guest'
             },
             name: {
               type: 'string',
               description: 'Route name'
             },
-            description: {
-              type: 'string',
-              description: 'Route description'
-            },
-            points: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  lat: { type: 'number' },
-                  lng: { type: 'number' },
-                  name: { type: 'string' }
-                }
-              }
-            },
             city: {
               type: 'string',
               description: 'City name'
             },
-            creator: {
+            category: {
               type: 'string',
-              description: 'Creator name'
+              description: 'Route category'
+            },
+            pins: {
+              type: 'array',
+              description: 'Array of pins along the route',
+              items: {
+                type: 'object',
+                properties: {
+                  name: { 
+                    type: 'string',
+                    description: 'Pin name'
+                  },
+                  lat: { 
+                    type: 'number',
+                    description: 'Latitude coordinate'
+                  },
+                  lng: { 
+                    type: 'number',
+                    description: 'Longitude coordinate'
+                  },
+                  note: {
+                    type: 'string',
+                    description: 'Pin note or description'
+                  }
+                }
+              }
             },
             createdAt: {
               type: 'string',
-              format: 'date-time'
+              format: 'date-time',
+              description: 'Creation timestamp'
+            },
+            updatedAt: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Last update timestamp'
             }
           }
         }
