@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import UserPage from './pages/UserPage'
 import Favourites from './pages/Favourites'
+import MyRoutes from './pages/MyRoutes'
 import './App.css'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/user" element={<UserPage />} />
           <Route path="/favourites" element={<Favourites />} />
+          <Route path="/my-routes" element={<MyRoutes />} />
         </Routes>
       </div>
     </Router>
