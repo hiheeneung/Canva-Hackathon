@@ -181,14 +181,6 @@ Canva-Hackathon/
 }
 ```
 
-## 🔌 API Endpoints
-
-- `POST /api/routes` - Save route with pins
-- `GET /api/routes?city=Tokyo` - Get all routes for city
-- `GET /api/routes/:userId` - Get user's personal routes
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `GET /api/health` - Health check
 
 ## 🎯 Future Enhancements
 
