@@ -406,6 +406,8 @@
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .cta-button::before {
@@ -426,10 +428,17 @@
 .cta-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 40px rgba(244, 143, 177, 0.6);
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .cta-button:active {
   transform: translateY(-1px);
+}
+
+.cta-button:visited {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /* Responsive Design */
