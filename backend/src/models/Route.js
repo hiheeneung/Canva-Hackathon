@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const PinSchema = new mongoose.Schema({
   name: String,
@@ -18,4 +18,4 @@ const RouteSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Route", RouteSchema);
+export default mongoose.model("Route", RouteSchema);
