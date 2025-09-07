@@ -1,8 +1,9 @@
 # Canva-Hackathon
 Travel Route App
-# 🐦 Travel Migration Map
 
-> *"Animals like birds and whales return to the same migration routes year after year, remembering their paths across continents. Humans? We forget the ramen shop we ate at last night. Our Travel Migration Map helps us remember and share our journeys."*
+# 🐳 Travel Journal
+
+> *"Animals like birds and whales return to the same migration routes year after year, remembering their paths across continents. Humans? We forget the ramen shop we ate at last night. WanderPath helps us remember and share our journeys."*
 
 ## 🌍 The Problem
 
@@ -23,7 +24,7 @@ Just like birds, whales, and butterflies remember and retrace migration routes, 
 
 1. **Log Your Route (Drop Pins)**
    - Click on the map to drop pins at restaurants, shops, attractions
-   - Each pin = memory (name + category + note)
+   - Each pin = memory 
 
 2. **Build a Migration Trail**
    - Pins are auto-connected into a trail (like a bird's flight path)
