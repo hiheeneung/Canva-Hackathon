@@ -28,7 +28,7 @@ Just like birds, whales, and butterflies remember and retrace migration routes, 
 
 2. **Build a Migration Trail**
    - Pins are auto-connected into a trail (like a bird's flight path)
-   - Saved as a named "route" (e.g., Sydney Food Crawl, Singapore Temple Walk)
+   - Saved as a named "route" (e.g., Switzerland Christmas Wonderland, Singapore Food Crawl)
 
 3. **Explore Community Trails**
    - Search a city → see migration routes made by others
