@@ -1,5 +1,5 @@
 # Canva-Hackathon
-Travel Route App
+Travel Journal App
 
 # 🐳 Travel Journal
 
