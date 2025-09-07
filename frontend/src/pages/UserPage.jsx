@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './UserPage.css';
 
 const UserPage = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Handle search functionality here
+    console.log('Searching for:', searchQuery);
+  };
+
   return (
     <div className="user-page">
       {/* Header with Navigation */}
@@ -11,10 +19,23 @@ const UserPage = () => {
           <span className="logo-text">WANDERPATH</span>
         </div>
         
-        {/* Navigation Elements */}
-        <div className="nav-left">
+        {/* Search Bar */}
+        <div className="search-container">
+          <form onSubmit={handleSearch} className="search-form">
+            <input
+              type="text"
+              placeholder="Search destinations, routes, or experiences..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+            <button type="submit" className="search-button">
+              <span className="search-icon">🔍</span>
+            </button>
+          </form>
         </div>
         
+        {/* Navigation Elements */}
         <div className="nav-right">
           <a href="/create-route" className="nav-button make-route-btn">
             Create Your Own Route
